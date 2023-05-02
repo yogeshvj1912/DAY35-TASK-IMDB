@@ -1,0 +1,78 @@
+///////////////create database/////////////
+CREATE DATABASE IMDB;
+USE IMDB;
+/////////////create movie table//////////////
+CREATE TABLE MOVIES(ID INT NOT NULL AUTO_INCREMENT,TITLE VARCHAR(100) NOT NULL,MOVIE_LANGUAGE VARCHAR(255) NOT NULL,GENRE VARCHAR(255) NOT NULL,DIRECTOR VARCHAR(100) NOT NULL,RELEASE_DATE DATE NOT NULL,PRIMARY KEY(ID));
+
+///////////////insert movies datas///////////
+INSERT INTO MOVIES (TITLE,MOVIE_LANGUAGE,GENRE,DIRECTOR,RELEASE_DATE) VALUES 
+('MASTER','Tamil,Hindi,Malayalam,Telugu','Action,Romance,Thriller,Drama','Lokesh Kanagaraj','2021-01-13'),
+('VIKRAM','Tamil,Hindi,Malayalam,Telugu','Action,Thriller,Drama','Lokesh Kanagaraj','2022-06-03'),
+('IRON MAN','English,Persian,Urdu,Hindi,Tamil
+','Action,Adventure,Sci-Fi,','Jon Favreau','2008-04-14'),
+('GHILLI','Tamil','Action,Romance,Drama','Dharani','2004-04-17');
+
+SELECT * FROM MOVIES;
+
+////////////create media table///////////
+
+CREATE TABLE MEDIA(ID INT NOT NULL,MEDIA_ID INT NOT NULL AUTO_INCREMENT,IMAGE VARCHAR(5000) NOT NULL,VIDEO VARCHAR(5000) NOT NULL,PRIMARY KEY(MEDIA_ID));
+
+//////////insert media datas///////////
+
+INSERT INTO MEDIA (ID,IMAGE,VIDEO) VALUES 
+('1','https://www.imdb.com/title/tt10579952/mediaviewer/rm610877185?ref_=ttmi_mi_all_sf_1,https://www.imdb.com/title/tt10579952/mediaviewer/rm3967014401/,https://www.imdb.com/title/tt10579952/mediaviewer/rm1555170561?ref_=ttmi_mi_all_sf_3','https://www.imdb.com/video/vi2942812441/?ref_=ttvi_vi_imdb_2'),
+('2','https://www.imdb.com/title/tt9179430/mediaviewer/rm2195919105?ref_=ttmi_mi_all_pos_8,https://www.imdb.com/title/tt9179430/mediaviewer/rm823069953?ref_=ttmi_mi_all_pos_27','https://www.imdb.com/video/vi3381510681/?ref_=ttvi_vi_imdb_5'),
+('3','https://www.imdb.com/title/tt0371746/mediaviewer/rm2129434880?ref_=ttmi_mi_all_pbl_47,https://www.imdb.com/title/tt0371746/mediaviewer/rm320113664?ref_=ttmi_mi_all_sf_2,https://www.imdb.com/title/tt0371746/mediaviewer/rm303336448?ref_=ttmi_mi_all_sf_3','https://www.imdb.com/video/vi447873305/?ref_=ttvi_vi_imdb_30'),
+('4','https://www.imdb.com/title/tt0422320/mediaviewer/rm1498944257?ref_=ttmi_mi_all_sf_34,https://www.imdb.com/title/tt0422320/mediaviewer/rm2790789889?ref_=ttmi_mi_all_sf_33,https://www.imdb.com/title/tt0422320/mediaviewer/rm1339426049?ref_=ttmi_mi_all_sf_16','https://www.imdb.com/video/vi3743988505/?ref_=ttvi_vi_imdb_1');
+
+///////// create  MOVIE_REVIEWS table ////////////
+
+CREATE TABLE MOVIE_REVIEWS(ID INT NOT NULL,REVIEW_ID INT NOT NULL AUTO_INCREMENT,REVIEWS VARCHAR(255) NOT NULL,USER_NAME VARCHAR(25) NOT NULL,REVIEW_DATE DATE NOT NULL,PRIMARY KEY(REVIEW_ID));
+
+///////// insert  MOVIE_REVIEWS datas///////////
+
+INSERT INTO MOVIE_REVIEWS (ID,REVIEWS,USER_NAME,REVIEW_DATE) VALUES  ('1','Story is a something different but somewhat hyped as well and made in commercial way to appeal the fans. But should not miss it in theatres.','Manoj','2021-04-08'),
+('1','Vj&vjs mass acting 1st half vera maari, vera maari 2nd half ok superb Aniruth bgm Rock Lokesh direction different thank u thalaivaa Enjoying movie Happy master pongal','Vinoth','2021-1-13'),
+('2','Not Kamal Haasan Not Fahad Fazil Not Vijay Sethupathi Not Surya Lokesh is the Real Hero Utilised the Cast perfectly ... BGM, Theatre Experience was lit','Jack','2022-6-13'),
+('2','KH is back with a bang in this action movie. The action scenes are raw and chilling. Every character has brilliant characteristics and are used brilliantly to the screenplay. Fahad Fazil has a good emotional part. Do watch if you like raw action movies!!','Ragul','2022-6-8'),
+('2','Very engaging screenplay and overall great performances by all stars. A lot of fan moments to enjoy. Looking forward to future installments of the Vikram series. Congratulations to Lokesh and team.','Giri','2022-7-2'),
+('3',"Fortunately, I'm not one easily influenced by some users' negative comments. These people should try to restrain their bias opinions and try to review the movies as neutrally as possible.",'Dhakshith','2016-3-15'),
+('4','Ghilli movie super ah irunthichi,prakash raj acting si good.trisha and vijay love scenes mesmerizing','Y.Dhivya','2010-5-17'),
+('4','Thalapathy acting mass avrauku edu inai yarum illa, he is a very good actor,dancer and comedian.prakash raj acting also very well','Yogesh.D','2010-5-17');
+
+///////////create ACTORS_NAME table////////////
+
+CREATE TABLE ACTORS_NAME(ID INT NOT NULL,ACTOR_ID INT NOT NULL AUTO_INCREMENT,NAME VARCHAR(25) NOT NULL,PRIMARY KEY(ACTOR_ID));
+
+////////////insert ACTORS_NAME datas///////////////
+
+INSERT INTO ACTORS_NAME (ID,NAME)VALUES
+('1','Vijay'),
+('1','Vijay Sethupathi'),
+('1','Malavika Mohan'),
+('1','Arjun Dass'),
+('2','Kmala Hasan'),
+('2','Vijay Sethupathy'),
+('2','Fahad Fazil'),
+('2','Suriya'),
+('3','Robert Downey'),
+('3','Gwyneth Paltrow'),
+('4','Vijay'),
+('4','Trisha'),
+('4','Prakash raj');
+
+/////////////create ACTORS_SKILLS table/////////////
+CREATE TABLE ACTORS_SKILLS(SKILLS_ID INT NOT NULL AUTO_INCREMENT,SKILLS VARCHAR(100),PRIMARY KEY(SKILLS_ID));
+
+/////////////insert ACTORS_SKILLS datas/////////////
+
+INSERT INTO actors_skills (skills) values ('Acting'),('Dancing'),('Singing'),('Comedian'),('Music Director'),('Director'),('Story Writer'),('Producer');
+///////////create actors_name_actors_skills table//////////////
+CREATE TABLE actors_name_actors_skills(ANS_ID INT NOT NULL AUTO_INCREMENT,ACTOR_ID INT NOT NULL,SKILLS_ID INT NOT NULL,PRIMARY KEY(ANS_ID));
+//////////insert actors_name_actors_skills datas////////////
+INSERT INTO actors_name_actors_skills (ACTOR_ID,SKILLS_ID) VALUES ('1','1'),('1','2'),('1','3'),('1','4'),('1','8'),('2','1'),('2','2'),('2','8'),('3','1'),('3','2'),('4','1'),('5','1'),('5','2'),('5','3'),('5','8'),('6','1'),('7','1'),('8','1'),('8','2'),('8','3'),('8','8'),('9','1'),('9','4'),('10','1'),('11','1'),('11','2'),('11','3'),('12','1'),('12','2'),('13','1');
+//////////create MOVIE_ROLE table///////////////
+CREATE TABLE MOVIE_ROLE(ROLE_ID INT NOT NULL AUTO_INCREMENT,ACTOR_ID INT NOT NULL,ROLE VARCHAR(100) NOT NULL,PRIMARY KEY(ROLE_ID));
+/////////insert MOVIE_ROLE datas//////////////
+INSERT INTO MOVIE_ROLE (ACTOR_ID,ROLE) VALUES ('1','JD'),('2','Bhavani'),('3','Charulatha'),('4','Anbu'),('5','Vikram'),('6','Santhanam'),('7','Agent Amar'),('8','Rolex'),('9','Tony Stark'),('10','Pepper Potts'),('11','Saravana Velu'),('12','Dhanalakshmi'),('13','Muthu Pandy');
